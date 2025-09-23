@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminova - Buat Janji Medis dengan Mudah, Cepat, dan Terpercaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lumi-primary': '#2563EB',
+                        'lumi-secondary': '#7C3AED',
+                        'lumi-bg': '#F9FAFB',
+                        'lumi-accent': '#F472B6',
+                        'lumi-text': '#111827',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .btn-primary {
+            background-color: #2563EB;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1D4ED8;
+            transform: translateY(-2px);
+        }
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .doctor-card {
+            transition: all 0.3s ease;
+        }
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-lumi-bg text-lumi-text font-sans">
+    <!-- Header/Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <span class="text-lumi-primary text-2xl font-bold">Luminova</span>
+                </div>
+
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Beranda</a>
+                    <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Dokter</a>
+                    <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Klinik</a>
+                    <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Tentang Kami</a>
+                    <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Kontak</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="hidden md:inline-block text-lumi-primary hover:text-lumi-secondary transition-colors">Masuk</a>
+                    <a href="#" class="btn-primary text-white px-4 py-2 rounded-lg font-medium">Daftar</a>
+
+                    <button class="md:hidden text-gray-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 md:py-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold text-lumi-text mb-4">Luminova</h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-lumi-primary mb-6">Buat Janji Medis dengan Mudah, Cepat, dan Terpercaya</h2>
+                    <p class="text-gray-600 mb-8 text-lg">Platform kesehatan terdepan yang menghubungkan Anda dengan dokter dan klinik terbaik di Indonesia. Dapatkan layanan kesehatan berkualitas dengan pengalaman booking yang sederhana.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#" class="btn-primary text-white px-6 py-3 rounded-lg text-center font-semibold text-lg">Buat Janji Sekarang</a>
+                        <a href="#" class="border border-lumi-primary text-lumi-primary px-6 py-3 rounded-lg text-center font-semibold text-lg hover:bg-lumi-primary hover:text-white transition-colors">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img
+                        src="https://placeholder-image-service.onrender.com/image/600x500?prompt=Healthcare professionals in a modern clinic setting with a friendly atmosphere&id=c8614bbe-1f82-4b35-a7d4-2ec650353254"
+                        alt="Dokter dan staf medis profesional di lingkungan klinik modern yang ramah"
+                        class="rounded-lg shadow-lg"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-lumi-text mb-4">Cara Kerja Luminova</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Hanya dalam 4 langkah sederhana, Anda dapat membuat janji medis dengan mudah dan cepat</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="step-card bg-white p-6 rounded-xl shadow-md border border-gray-100 transition-all duration-300 text-center">
+                    <div class="w-16 h-16 rounded-full bg-lumi-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-lumi-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Cari Dokter</h3>
+                    <p class="text-gray-600">Temukan dokter atau klinik sesuai kebutuhan dan lokasi Anda</p>
+                    <div class="mt-4 text-lumi-primary font-bold">01</div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card bg-white p-6 rounded-xl shadow-md border border-gray-100 transition-all duration-300 text-center">
+                    <div class="w-16 h-16 rounded-full bg-lumi-secondary/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar-check text-lumi-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Pilih Jadwal</h3>
+                    <p class="text-gray-600">Pilih tanggal dan waktu kunjungan yang sesuai dengan kesibukan Anda</p>
+                    <div class="mt-4 text-lumi-secondary font-bold">02</div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card bg-white p-6 rounded-xl shadow-md border border-gray-100 transition-all duration-300 text-center">
+                    <div class="w-16 h-16 rounded-full bg-lumi-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check-circle text-lumi-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Konfirmasi</h3>
+                    <p class="text-gray-600">Konfirmasi janji temu dan terima notifikasi pengingat</p>
+                    <div class="mt-4 text-lumi-accent font-bold">03</div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card bg-white p-6 rounded-xl shadow-md border border-gray-100 transition-all duration-300 text-center">
+                    <div class="w-16 h-16 rounded-full bg-lumi-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hospital-user text-lumi-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Datang</h3>
+                    <p class="text-gray-600">Datang sesuai jadwal dan dapatkan pelayanan terbaik</p>
+                    <div class="mt-4 text-lumi-primary font-bold">04</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Doctors Section -->
+    <section class="py-16 bg-lumi-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-lumi-text mb-4">Dokter dan Spesialis Pilihan</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Temui tim dokter profesional dan berpengalaman siap memberikan perawatan terbaik untuk Anda</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Doctor 1 -->
+                <div class="doctor-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <img
+                        src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Professional female doctor in white coat with stethoscope&id=c8614bbe-1f82-4b35-a7d4-2ec650353254"
+                        alt="Dokter wanita profesional dengan jas putih dan stetoskop"
+                        class="w-full h-56 object-cover"
+                    />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">Dr. Sari Indah, Sp.PD</h3>
+                        <p class="text-lumi-primary mb-3">Dokter Spesialis Penyakit Dalam</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-600 ml-2">4.8 (127 reviews)</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">RS Metropolitan Medical Center</p>
+                        <a href="#" class="block text-center btn-primary text-white py-2 rounded-lg font-medium">Lihat Jadwal</a>
+                    </div>
+                </div>
+
+                <!-- Doctor 2 -->
+                <div class="doctor-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <img
+                        src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Professional male doctor with friendly smile and white coat&id=c8614bbe-1f82-4b35-a7d4-2ec650353254"
+                        alt="Dokter pria profesional dengan senyum ramah dan jas putih"
+                        class="w-full h-56 object-cover"
+                    />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">Dr. Ahmad Wijaya, Sp.A</h3>
+                        <p class="text-lumi-primary mb-3">Dokter Spesialis Anak</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 ml-2">4.9 (98 reviews)</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Klinik Anak Sehat Terpadu</p>
+                        <a href="#" class="block text-center btn-primary text-white py-2 rounded-lg font-medium">Lihat Jadwal</a>
+                    </div>
+                </div>
+
+                <!-- Doctor 3 -->
+                <div class="doctor-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <img
+                        src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Senior female doctor with glasses and professional appearance&id=c8614bbe-1f82-4b35-a7d4-2ec650353254"
+                        alt="Dokter wanita senior berkacamata dengan penampilan profesional"
+                        class="w-full h-56 object-cover"
+                    />
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-1">Dr. Rina Hartati, Sp.OG</h3>
+                        <p class="text-lumi-primary mb-3">Dokter Spesialis Kandungan</p>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 ml-2">5.0 (156 reviews)</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">RSIA Bunda Sejahtera</p>
+                        <a href="#" class="block text-center btn-primary text-white py-2 rounded-lg font-medium">Lihat Jadwal</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-lumi-primary font-semibold hover:text-lumi-secondary transition-colors">
+                    Lihat Semua Dokter <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Luminova Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-lumi-text mb-4">Mengapa Memilih Luminova?</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Kami hadir untuk memudahkan akses kesehatan Anda dengan berbagai keunggulan</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Benefit 1 -->
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 rounded-full bg-lumi-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-lumi-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Mudah</h3>
+                    <p class="text-gray-600">Proses booking yang sederhana hanya dalam beberapa langkah</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 rounded-full bg-lumi-secondary/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt text-lumi-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Cepat</h3>
+                    <p class="text-gray-600">Dapatkan konfirmasi instan tanpa proses yang berbelit</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 rounded-full bg-lumi-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-lumi-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Terpercaya</h3>
+                    <p class="text-gray-600">Bekerja dengan dokter dan klinik terpercaya seluruh Indonesia</p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 rounded-full bg-lumi-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-smile text-lumi-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Nyaman</h3>
+                    <p class="text-gray-600">Pengalaman konsultasi yang nyaman dan tanpa stres</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-lumi-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-lumi-text mb-4">Apa Kata Pasien Kami</h2>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto mb-12">Dengarkan pengalaman langsung dari pasien yang telah menggunakan layanan Luminova</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"Sangat mudah membuat janji dengan dokter melalui Luminova. Tidak perlu antri lama dan bisa memilih waktu yang sesuai. Pengalaman yang sangat memuaskan!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img
+                                src="https://placeholder-image-service.onrender.com/image/100x100?prompt=Portrait of a smiling Indonesian woman in her 30s&id=c8614bbe-1f82-4b35-a7d4-2ec650353254"
+                                alt="Potret wanita Indonesia tersenyum berusia 30-an tahun"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Dewi Suryani</h4>
+                            <p class="text-gray-500">Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"Sebagai orang tua, saya sangat terbantu dengan Luminova. Bisa booking janji untuk anak tanpa harus datang langsung ke klinik. Sangat recommended!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img
+                                src="https://placeholder-image-service.onrender.com/image/100x100?prompt=Portrait of a Indonesian father in his 40s with gentle expression&id=c8614bbe-1f82-4b35-a7d4-2ec650353254"
+                                alt="Potret ayah Indonesia berusia 40-an dengan ekspresi lembut"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Budi Santoso</h4>
+                            <p class="text-gray-500">Bandung</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"Aplikasi yang sangat membantu untuk yang sibuk seperti saya. Bisa booking janji kapan saja dan di mana saja. Pelayanannya juga sangat profesional."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img
+                                src="https://placeholder-image-service.onrender.com/image/100x100?prompt=Portrait of a professional Indonesian woman in her 30s&id=c8614bbe-1f82-4b35-a7d4-2ec650353254"
+                                alt="Potret wanita profesional Indonesia berusia 30-an tahun"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Rina Nurhayati</h4>
+                            <p class="text-gray-500">Surabaya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-lumi-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Mulai Buat Janji Hari Ini</h2>
+            <p class="text-white/90 max-w-2xl mx-auto mb-8">Jangan tunda kesehatan Anda. Dapatkan pelayanan medis terbaik dengan mudah melalui Luminova.</p>
+            <a href="#" class="inline-block bg-white text-lumi-primary font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors">Buat Janji Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div>
+                    <h3 class="text-2xl font-bold text-lumi-primary mb-4">Luminova</h3>
+                    <p class="text-gray-600 mb-4">Platform kesehatan terdepan untuk membuat janji medis dengan mudah, cepat, dan terpercaya.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Layanan -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Layanan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Cari Dokter</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Buat Janji</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Konsultasi Online</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Artikel Kesehatan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Perusahaan -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Perusahaan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Tentang Kami</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Karir</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-lumi-primary transition-colors">Partner</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak -->
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">Kontak</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-lumi-primary mt-1 mr-2"></i>
+                            <span class="text-gray-600">Jl. Kesehatan No. 123, Jakarta Pusat</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-lumi-primary mt-1 mr-2"></i>
+                            <span class="text-gray-600">+62 21 1234 5678</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-lumi-primary mt-1 mr-2"></i>
+                            <span class="text-gray-600">info@luminova.co.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 mt-12 pt-8 text-center text-gray-600">
+                <p>© 2023 Luminova. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
