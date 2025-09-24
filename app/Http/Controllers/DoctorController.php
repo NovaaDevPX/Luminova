@@ -10,4 +10,9 @@ class DoctorController extends Controller
     {
         return view('doctor.index');
     }
+
+    public function allDoctor()
+    {
+        return view('doctor.all-doctor');
+    }
 }

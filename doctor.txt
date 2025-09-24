@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Listing - Luminova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen py-8 bg-gray-50">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <!-- Top Search Bar -->
+        <div class="mb-8 text-center">
+            <input
+                type="text"
+                placeholder="Cari dokter berdasarkan nama..."
+                class="w-full max-w-md px-6 py-4 transition border border-gray-200 shadow-sm rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+        </div>
+
+        <!-- Main Layout: Filters + Grid -->
+        <div class="flex flex-col gap-6 lg:flex-row">
+            <!-- Filter Sidebar (Full width on mobile, sticky on desktop) -->
+            <div class="w-full p-6 bg-white border border-gray-100 shadow-sm lg:w-1/4 lg:sticky lg:top-4 rounded-2xl">
+                <h2 class="mb-4 text-lg font-bold text-gray-800">Filter Spesialis</h2>
+
+                <!-- Small Search in Filters -->
+                <div class="mb-4">
+                    <input
+                        type="text"
+                        placeholder="Cari spesialis..."
+                        class="w-full px-4 py-2 transition border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent"
+                    >
+                </div>
+
+                <!-- Checkboxes List -->
+                <div class="mb-6 space-y-3 overflow-y-auto max-h-96">
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-stethoscope"></i>
+                        <span class="font-medium text-gray-700">Umum</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-child"></i>
+                        <span class="font-medium text-gray-700">Anak</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-tooth"></i>
+                        <span class="font-medium text-gray-700">Gigi</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-hand-holding-medical"></i>
+                        <span class="font-medium text-gray-700">Kulit</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-user-md"></i>
+                        <span class="font-medium text-gray-700">Bedah</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-eye"></i>
+                        <span class="font-medium text-gray-700">Mata</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-baby"></i>
+                        <span class="font-medium text-gray-700">Kandungan</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-brain"></i>
+                        <span class="font-medium text-gray-700">Jiwa</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-ear-hear"></i>
+                        <span class="font-medium text-gray-700">THT</span>
+                    </label>
+                    <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+                        <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+                        <i class="mr-2 text-sm text-blue-500 fas fa-bone"></i>
+                        <span class="font-medium text-gray-700">Orthopedi</span>
+                    </label>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex pt-2 space-x-3">
+                    <button class="flex-1 px-4 py-2 font-medium text-white transition bg-blue-500 rounded-xl hover:opacity-90">
+                        Terapkan Filter
+                    </button>
+                    <button class="flex-1 px-4 py-2 font-medium text-blue-500 transition border border-blue-500 rounded-xl hover:bg-blue-50">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Doctor Grid -->
+            <div class="w-full lg:w-3/4">
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- Doctor Card 1 -->
+                    <div class="p-6 transition-shadow duration-200 bg-white border border-gray-100 shadow-sm rounded-2xl hover:shadow-md">
+                        <div class="mb-4 text-center">
+                            <img
+                                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&crop=face&crop=face"
+                                alt="Dr. Ahmad Santoso"
+                                class="object-cover w-20 h-20 mx-auto border-2 border-gray-100 rounded-full shadow-md"
+                            >
+                        </div>
+                        <h3 class="mb-1 text-xl font-semibold text-center text-gray-800">Dr. Ahmad Santoso</h3>
+                        <p class="mb-3 font-medium text-center text-blue-500">Spesialis Umum</p>
+                        <div class="flex items-center justify-center mb-3">
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star-half-alt"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-600">4.8 (23 ulasan)</span>
+                        </div>
+                        <p class="mb-4 text-sm leading-relaxed text-center text-gray-600">Dokter umum berpengalaman dengan fokus pada pencegahan dan pengobatan penyakit umum sehari-hari.</p>
+                        <button class="w-full py-3 font-medium text-white transition bg-blue-500 rounded-xl hover:opacity-90">
+                            <i class="mr-2 fas fa-calendar-check"></i> Buat Janji
+                        </button>
+                    </div>
+
+                    <!-- Doctor Card 2 -->
+                    <div class="p-6 transition-shadow duration-200 bg-white border border-gray-100 shadow-sm rounded-2xl hover:shadow-md">
+                        <div class="mb-4 text-center">
+                            <img
+                                src="https://images.unsplash.com/photo-1594824638658-5d4555c4f0e8?w=80&h=80&fit=crop&crop=face"
+                                alt="Dr. Siti Nurhaliza"
+                                class="object-cover w-20 h-20 mx-auto border-2 border-gray-100 rounded-full shadow-md"
+                            >
+                        </div>
+                        <h3 class="mb-1 text-xl font-semibold text-center text-gray-800">Dr. Siti Nurhaliza</h3>
+                        <p class="mb-3 font-medium text-center text-blue-500">Spesialis Anak</p>
+                        <div class="flex items-center justify-center mb-3">
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-600">5.0 (15 ulasan)</span>
+                        </div>
+                        <p class="mb-4 text-sm leading-relaxed text-center text-gray-600">Ahli dalam perawatan anak-anak, vaksinasi, dan perkembangan kesehatan bayi hingga remaja.</p>
+                        <button class="w-full py-3 font-medium text-white transition bg-blue-500 rounded-xl hover:opacity-90">
+                            <i class="mr-2 fas fa-calendar-check"></i> Buat Janji
+                        </button>
+                    </div>
+
+                    <!-- Doctor Card 3 -->
+                    <div class="p-6 transition-shadow duration-200 bg-white border border-gray-100 shadow-sm rounded-2xl hover:shadow-md">
+                        <div class="mb-4 text-center">
+                            <img
+                                src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=80&h=80&fit=crop&crop=face"
+                                alt="Dr. Budi Hartono"
+                                class="object-cover w-20 h-20 mx-auto border-2 border-gray-100 rounded-full shadow-md"
+                            >
+                        </div>
+                        <h3 class="mb-1 text-xl font-semibold text-center text-gray-800">Dr. Budi Hartono</h3>
+                        <p class="mb-3 font-medium text-center text-blue-500">Spesialis Gigi</p>
+                        <div class="flex items-center justify-center mb-3">
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star-half-alt"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-600">4.7 (18 ulasan)</span>
+                        </div>
+                        <p class="mb-4 text-sm leading-relaxed text-center text-gray-600">Spesialis perawatan gigi dan mulut, termasuk pemutihan dan ortodonti modern.</p>
+                        <button class="w-full py-3 font-medium text-white transition bg-blue-500 rounded-xl hover:opacity-90">
+                            <i class="mr-2 fas fa-calendar-check"></i> Buat Janji
+                        </button>
+                    </div>
+
+                    <!-- Doctor Card 4 -->
+                    <div class="p-6 transition-shadow duration-200 bg-white border border-gray-100 shadow-sm rounded-2xl hover:shadow-md">
+                        <div class="mb-4 text-center">
+                            <img
+                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+                                alt="Dr. Rina Wijaya"
+                                class="object-cover w-20 h-20 mx-auto border-2 border-gray-100 rounded-full shadow-md"
+                            >
+                        </div>
+                        <h3 class="mb-1 text-xl font-semibold text-center text-gray-800">Dr. Rina Wijaya</h3>
+                        <p class="mb-3 font-medium text-center text-blue-500">Spesialis Kulit</p>
+                        <div class="flex items-center justify-center mb-3">
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-600">4.9 (20 ulasan)</span>
+                        </div>
+                        <p class="mb-4 text-sm leading-relaxed text-center text-gray-600">Pakar dermatologi untuk masalah kulit, jerawat, dan perawatan kecantikan alami.</p>
+                        <button class="w-full py-3 font-medium text-white transition bg-blue-500 rounded-xl hover:opacity-90">
+                            <i class="mr-2 fas fa-calendar-check"></i> Buat Janji
+                        </button>
+                    </div>
+
+                    <!-- Doctor Card 5 -->
+                    <div class="p-6 transition-shadow duration-200 bg-white border border-gray-100 shadow-sm rounded-2xl hover:shadow-md">
+                        <div class="mb-4 text-center">
+                            <img
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+                                alt="Dr. Leo Pratama"
+                                class="object-cover w-20 h-20 mx-auto border-2 border-gray-100 rounded-full shadow-md"
+                            >
+                        </div>
+                        <h3 class="mb-1 text-xl font-semibold text-center text-gray-800">Dr. Leo Pratama</h3>
+                        <p class="mb-3 font-medium text-center text-blue-500">Spesialis Bedah</p>
+                        <div class="flex items-center justify-center mb-3">
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star-half-alt"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-600">4.6 (12 ulasan)</span>
+                        </div>
+                        <p class="mb-4 text-sm leading-relaxed text-center text-gray-600">Bedah umum dengan teknik minimally invasive untuk pemulihan cepat.</p>
+                        <button class="w-full py-3 font-medium text-white transition bg-blue-500 rounded-xl hover:opacity-90">
+                            <i class="mr-2 fas fa-calendar-check"></i> Buat Janji
+                        </button>
+                    </div>
+
+                    <!-- Doctor Card 6 -->
+                    <div class="p-6 transition-shadow duration-200 bg-white border border-gray-100 shadow-sm rounded-2xl hover:shadow-md">
+                        <div class="mb-4 text-center">
+                            <img
+                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face"
+                                alt="Dr. Maya Sari"
+                                class="object-cover w-20 h-20 mx-auto border-2 border-gray-100 rounded-full shadow-md"
+                            >
+                        </div>
+                        <h3 class="mb-1 text-xl font-semibold text-center text-gray-800">Dr. Maya Sari</h3>
+                        <p class="mb-3 font-medium text-center text-blue-500">Spesialis Mata</p>
+                        <div class="flex items-center justify-center mb-3">
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <i class="text-sm text-yellow-400 fas fa-star"></i>
+                            <span class="ml-1 text-sm font-medium text-gray-600">4.9 (25 ulasan)</span>
+                        </div>
+                        <p class="mb-4 text-sm leading-relaxed text-center text-gray-600">Oftalmologi lengkap, termasuk pemeriksaan mata dan koreksi penglihatan.</p>
+                        <button class="w-full py-3 font-medium text-white transition bg-blue-500 rounded-xl hover:opacity-90">
+                            <i class="mr-2 fas fa-calendar-check"></i> Buat Janji
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

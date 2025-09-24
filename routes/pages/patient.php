@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('doctor')->as('doctor.')->group(function () {
-    Route::get('/', [DoctorController::class, 'index'])->name('index');
+Route::prefix('patient')->as('patient.')->group(function () {
+    Route::get('/', [PatientController::class, 'index'])->name('index');
 });
