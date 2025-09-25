@@ -22,6 +22,7 @@ export default {
                 secondary: "#7C3AED",
                 bg: "#F9FAFB",
                 accent: "#6180EF",
+                "accent-hover": "#1d4ed8",
                 text: "#111827",
             },
         },
