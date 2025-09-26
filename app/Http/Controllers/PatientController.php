@@ -10,4 +10,14 @@ class PatientController extends Controller
     {
         return view('patient.index');
     }
+
+    public function aboutWe()
+    {
+        return view('patient.about-we');
+    }
+
+    public function contactWe()
+    {
+        return view('patient.contact-we');
+    }
 }

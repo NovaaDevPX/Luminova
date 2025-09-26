@@ -45,4 +45,9 @@ class DoctorController extends Controller
 
         return view('doctor.all-doctor', compact('doctors'));
     }
+
+    public function dashboard()
+    {
+        return view('doctor.dashboard.index');
+    }
 }
