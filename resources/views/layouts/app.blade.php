@@ -19,7 +19,8 @@
 </head>
 
 <body class="bg-bg">
-  <main class="w-full h-full mx-auto">
+  <main class="min-h-screen bg-gray-50">
+    <x-partials.sidebar />
     {{ $slot }}
   </main>
 </body>

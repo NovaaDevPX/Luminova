@@ -50,4 +50,19 @@ class DoctorController extends Controller
     {
         return view('doctor.dashboard.index');
     }
+
+    public function appointments()
+    {
+        return view('doctor.dashboard.appointments');
+    }
+
+    public function patients()
+    {
+        return view('doctor.dashboard.patients');
+    }
+
+    public function reviews()
+    {
+        return view('doctor.dashboard.reviews');
+    }
 }

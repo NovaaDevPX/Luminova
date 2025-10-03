@@ -9,5 +9,8 @@ Route::prefix('doctor')->as('doctor.')->group(function () {
 
     Route::prefix('dashboard')->as('dashboard.')->group(function () {
         Route::get('/', [DoctorController::class, 'dashboard'])->name('index');
+        Route::get('/appointments', [DoctorController::class, 'appointments'])->name('appointments');
+        Route::get('/patients', [DoctorController::class, 'patients'])->name('patients');
+        Route::get('/reviews', [DoctorController::class, 'reviews'])->name('reviews');
     });
 });
