@@ -1,57 +1,40 @@
-{{-- <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block w-full mt-1" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block w-full mt-1" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block w-full mt-1"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block w-full mt-1"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
-
 <x-guest-layout title="Register">
+  <!-- Alerts -->
+  @if (session('success'))
+    <div
+      class="fixed z-50 flex items-center p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg shadow-lg top-5 right-5"
+      role="alert">
+      <svg class="w-5 h-5 mr-2 text-green-700" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293A1 1 0 106.293 10.707l2 2a1 1 0 001.414 0l4-4z"
+          clip-rule="evenodd"></path>
+      </svg>
+      <span>{{ session('success') }}</span>
+    </div>
+  @endif
+
+  @if (session('error'))
+    <div class="fixed z-50 flex items-center p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-lg top-5 right-5"
+      role="alert">
+      <svg class="w-5 h-5 mr-2 text-red-700" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M18 10A8 8 0 11 2 10a8 8 0 0116 0zm-9-4a1 1 0 012 0v4a1 1 0 01-2 0V6zm1 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+          clip-rule="evenodd"></path>
+      </svg>
+      <span>{{ session('error') }}</span>
+    </div>
+  @endif
+
+  @if ($errors->any())
+    <div class="fixed z-50 p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-lg top-5 right-5" role="alert">
+      <ul class="pl-5 space-y-1 list-none">
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
   <x-padding.section-padding class="py-10">
     <div class="flex min-h-screen">
 
@@ -86,34 +69,37 @@
           <p class="mb-6 text-gray-500">Lengkapi data di bawah untuk mulai membuat janji medis Anda</p>
 
           <!-- Form -->
-          <form action="#" method="POST" class="space-y-4">
+          <form action="{{ route('register') }}" method="POST" class="space-y-4">
+            @csrf
+            @method('POST')
+
             <div>
               <label class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-              <input type="text" placeholder="John Doe"
+              <input type="text" name="name" placeholder="John Doe" autocomplete="name"
                 class="w-full px-4 py-2 mt-1 border border-gray-200 outline-none rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-3s">
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700">Email</label>
-              <input type="email" placeholder="you@example.com"
+              <input type="email" name="email" placeholder="you@example.com" autocomplete="username"
                 class="w-full px-4 py-2 mt-1 border border-gray-200 outline-none rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-3s">
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700">Tempat Tinggal</label>
-              <input type="text" placeholder="Jakarta, Indonesia"
+              <input type="text" name="address" placeholder="Jakarta, Indonesia" autocomplete="street-address"
                 class="w-full px-4 py-2 mt-1 border border-gray-200 outline-none rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-3s">
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700">No. Telepon</label>
-              <input type="tel" placeholder="+62 812 3456 7890"
+              <input type="number" name="phone" placeholder="0812 3456 7890" autocomplete="tel"
                 class="w-full px-4 py-2 mt-1 border border-gray-200 outline-none rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-3s">
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-700">Password</label>
-              <input type="password" placeholder="********"
+              <input type="password" name="password" placeholder="********" autocomplete="new-password"
                 class="w-full px-4 py-2 mt-1 border border-gray-200 outline-none rounded-xl focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-3s">
             </div>
 
@@ -122,6 +108,7 @@
               Daftar
             </button>
           </form>
+
 
           <!-- Divider -->
           <div class="flex items-center my-6">
@@ -143,7 +130,7 @@
           <!-- Footer -->
           <p class="mt-6 text-sm text-center text-gray-600">
             Sudah punya akun?
-            <a href="#" class="text-accent hover:underline">Masuk</a>
+            <a href="{{ route('login') }}" class="text-accent hover:underline">Masuk</a>
           </p>
         </div>
       </div>

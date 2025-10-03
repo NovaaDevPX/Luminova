@@ -79,15 +79,18 @@
           <p class="mb-6 text-gray-500">Masuk untuk melanjutkan konsultasi medis Anda</p>
 
           <!-- Form -->
-          <form action="#" method="POST" class="space-y-4">
+          <form action="{{ route('login') }}" method="POST" class="space-y-4">
+            @csrf
+            @method('POST')
+
             <div>
               <label class="block text-sm font-medium text-gray-700">Email</label>
-              <input type="email" placeholder="you@example.com"
+              <input type="email" placeholder="you@example.com" value="{{ old('email') }}" name="email"
                 class="w-full px-4 py-2 mt-1 border border-gray-200 outline-none rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-3s">
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700">Password</label>
-              <input type="password" placeholder="********"
+              <input type="password" placeholder="********" value="{{ old('password') }}" name="password"
                 class="w-full px-4 py-2 mt-1 border border-gray-200 outline-none rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-3s">
             </div>
 
@@ -121,7 +124,7 @@
           <!-- Footer -->
           <p class="mt-6 text-sm text-center text-gray-600">
             Baru di Luminova?
-            <a href="#" class="text-accent hover:underline">Buat akun</a>
+            <a href="{{ route('register') }}" class="text-accent hover:underline">Buat akun</a>
           </p>
         </div>
       </div>
