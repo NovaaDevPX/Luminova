@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone');
-            $table->text('address');
-            $table->date('birth_date');
-            $table->foreignId('doctor_specialization_id')
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->date('birth_date')->nullable();
+
+            $table->foreignId('specialization_id')
                 ->constrained('doctor_specializations')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
+
             $table->timestamps();
             $table->softDeletes();
         });

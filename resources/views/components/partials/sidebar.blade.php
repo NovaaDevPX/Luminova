@@ -12,8 +12,8 @@
   <div class="flex items-center gap-3 px-6 py-5 border-b">
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Doctor" class="w-12 h-12 rounded-full">
     <div>
-      <h2 class="text-sm font-semibold text-gray-700">Dr. John Doe</h2>
-      <p class="text-xs text-gray-500">Cardiologist</p>
+      <h2 class="text-sm font-semibold text-gray-700">{{ Auth::guard('doctor')->user()->name }}</h2>
+      <p class="text-xs text-gray-500">{{ Auth::guard('doctor')->user()->specialization->name }}</p>
     </div>
   </div>
 
@@ -64,7 +64,7 @@
 
   <!-- Logout -->
   <div class="px-6 py-4 border-t">
-    <form method="POST" action="{{ route('logout') }}">
+    <form method="POST" action="{{ route('doctor.logout') }}">
       @csrf
       <button type="submit"
         class="flex items-center w-full gap-3 px-3 py-2 text-left text-gray-600 rounded-xl hover:bg-red-50 hover:text-red-600">
