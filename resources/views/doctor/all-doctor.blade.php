@@ -103,9 +103,10 @@
       <div class="w-full lg:w-3/4">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           @foreach ($doctors as $doctor)
-            <x-cards.all-doctors :name="$doctor->name" :specialist="$doctor->specialist" :description="Str::limit($doctor->description, 100)" :rating="number_format($doctor->rating, 1)"
+            <x-cards.all-doctors :name="$doctor->name" :specialist="$doctor->specialization->name" :description="Str::limit($doctor->specialization->description, 100)" :rating="number_format($doctor->reviews->avg('rating'), 1)"
               :reviews="$doctor->reviews_count" :image="asset('storage/' . $doctor->image)" />
           @endforeach
+
         </div>
       </div>
     </div>

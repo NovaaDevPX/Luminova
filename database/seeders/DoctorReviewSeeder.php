@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\DoctorReview;
 use App\Models\User;
@@ -15,22 +16,21 @@ class DoctorReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        $doctor = Doctor::first();
-        $user = User::first();
+        // Ambil appointment yang sudah selesai
+        $completedAppointments = Appointment::where('status', 'completed')->get();
 
-        if ($doctor && $user) {
-            DoctorReview::create([
-                'user_id' => $user->id,
-                'doctor_id' => $doctor->id,
-                'rating' => 5,
-                'comment' => 'Very professional and helpful!'
-            ]);
+        if ($completedAppointments->isEmpty()) {
+            $this->command->warn('Tidak ada appointment dengan status completed. Jalankan AppointmentSeeder terlebih dahulu atau ubah salah satunya menjadi completed.');
+            return;
+        }
 
+        foreach ($completedAppointments as $appointment) {
             DoctorReview::create([
-                'user_id' => $user->id,
-                'doctor_id' => $doctor->id,
-                'rating' => 4,
-                'comment' => 'Good doctor, explained everything clearly.'
+                'user_id' => $appointment->user_id,
+                'doctor_id' => $appointment->doctor_id,
+                'appointment_id' => $appointment->id,
+                'rating' => fake()->numberBetween(1, 5),
+                'comment' => fake()->sentence(10),
             ]);
         }
     }
