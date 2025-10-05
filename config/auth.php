@@ -43,7 +43,7 @@ return [
 
         'doctor' => [
             'driver' => 'session',
-            'provider' => 'doctors',
+            'provider' => 'doctor',
         ],
     ],
 
@@ -70,7 +70,7 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'doctors' => [
+        'doctor' => [
             'driver' => 'eloquent',
             'model' => App\Models\Doctor::class,
         ],

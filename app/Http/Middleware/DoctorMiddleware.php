@@ -16,14 +16,21 @@ class DoctorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Jika sudah login sebagai doctor
         if (Auth::guard('doctor')->check()) {
-            if ($request->routeIs('doctor.login')) {
+            // Jika mencoba akses halaman login lagi, redirect ke dashboard
+            if ($request->routeIs('doctor.login') || $request->routeIs('doctor.authenticate')) {
                 return redirect()->route('doctor.dashboard.index');
             }
+
             return $next($request);
         }
 
+        // Jika belum login dan bukan halaman login, redirect ke login
+        if (!$request->routeIs('doctor.login') && !$request->routeIs('doctor.authenticate')) {
+            return redirect()->route('doctor.login');
+        }
 
-        return redirect()->route('doctor.login');
+        return $next($request);
     }
 }
