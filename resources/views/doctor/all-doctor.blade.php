@@ -35,56 +35,28 @@
 
         <!-- Checkboxes List -->
         <div class="mb-6 space-y-3 overflow-y-auto max-h-96">
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-stethoscope"></i>
-            <span class="font-medium text-gray-700">Umum</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-child"></i>
-            <span class="font-medium text-gray-700">Anak</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-tooth"></i>
-            <span class="font-medium text-gray-700">Gigi</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-hand-holding-medical"></i>
-            <span class="font-medium text-gray-700">Kulit</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-user-md"></i>
-            <span class="font-medium text-gray-700">Bedah</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-eye"></i>
-            <span class="font-medium text-gray-700">Mata</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-baby"></i>
-            <span class="font-medium text-gray-700">Kandungan</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-brain"></i>
-            <span class="font-medium text-gray-700">Jiwa</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-ear-hear"></i>
-            <span class="font-medium text-gray-700">THT</span>
-          </label>
-          <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
-            <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
-            <i class="mr-2 text-sm text-blue-500 fas fa-bone"></i>
-            <span class="font-medium text-gray-700">Orthopedi</span>
-          </label>
+          @forelse ($specializations as $specialization)
+            <label class="flex items-center p-2 transition rounded-lg cursor-pointer hover:bg-gray-50">
+              <input type="checkbox" class="w-4 h-4 mr-3 text-blue-500 rounded focus:ring-blue-500">
+              <table>
+                <tr class="align-middle">
+                  <td class="w-[30px]">
+                    <div class="flex items-center justify-center w-[30px]">
+                      <i class="text-blue-500 fas fa-{{ $specialization->fontawesome_icon }}"></i>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="font-medium text-gray-700">{{ $specialization->name }}</span>
+                  </td>
+                </tr>
+              </table>
+
+
+
+            </label>
+          @empty
+            <p class="text-gray-500">No specializations available.</p>
+          @endforelse
         </div>
 
         <!-- Action Buttons -->
@@ -104,7 +76,7 @@
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           @foreach ($doctors as $doctor)
             <x-cards.all-doctors :name="$doctor->name" :specialist="$doctor->specialization->name" :description="Str::limit($doctor->specialization->description, 100)" :rating="number_format($doctor->reviews->avg('rating'), 1)"
-              :reviews="$doctor->reviews_count" :image="asset('storage/' . $doctor->image)" />
+              :reviews="$doctor->reviews_count" :image="asset('storage/' . $doctor->image)" :link="route('doctor.appointment.index', $id->id)" />
           @endforeach
 
         </div>

@@ -13,6 +13,7 @@ class DoctorSpecialization extends Model
 
     protected $fillable = [
         'name',
+        'fontawesome_icon',
         'description'
     ];
 

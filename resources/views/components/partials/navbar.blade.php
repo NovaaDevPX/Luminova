@@ -11,7 +11,7 @@
 
       <nav class="hidden space-x-8 md:flex">
         <a href="{{ route('patient.index') }}" class="text-gray-600 hover:text-primary transition-3s">Beranda</a>
-        <a href="{{ route('doctor.all-doctor') }}" class="text-gray-600 hover:text-primary transition-3s">Dokter</a>
+        <a href="{{ route('patient.all-doctor') }}" class="text-gray-600 hover:text-primary transition-3s">Dokter</a>
         <a href="#" class="text-gray-600 hover:text-primary transition-3s">Klinik</a>
         <a href="{{ route('patient.about-we') }}" class="text-gray-600 hover:text-primary transition-3s">Tentang
           Kami</a>

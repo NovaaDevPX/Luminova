@@ -15,16 +15,6 @@ class DoctorController extends Controller
         return view('doctor.index');
     }
 
-    public function allDoctor()
-    {
-
-        $doctors = Doctor::with('specialization', 'reviews')
-            ->withCount('reviews')
-            ->get();
-
-        return view('doctor.all-doctor', compact('doctors'));
-    }
-
     public function dashboard()
     {
 

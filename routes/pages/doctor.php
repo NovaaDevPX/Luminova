@@ -8,8 +8,6 @@ Route::get('/', [DoctorController::class, 'index'])->name('home');
 
 Route::prefix('doctor')->as('doctor.')->group(function () {
     Route::middleware(['doctor'])->group(function () {
-        Route::get('/all-doctor', [DoctorController::class, 'allDoctor'])->name('all-doctor');
-
         Route::prefix('dashboard')->as('dashboard.')->group(function () {
             Route::get('/', [DoctorController::class, 'dashboard'])->name('index');
             Route::get('/appointments', [DoctorController::class, 'appointments'])->name('appointments');
@@ -23,4 +21,6 @@ Route::prefix('doctor')->as('doctor.')->group(function () {
         Route::post('/login', [DoctorAuthController::class, 'authenticate'])->name('authenticate');
         Route::post('/logout', [DoctorAuthController::class, 'logout'])->name('logout');
     });
+
+    include_once 'appointment.php';
 });

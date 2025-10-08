@@ -14,10 +14,31 @@ class DoctorSpecializationSeeder extends Seeder
     public function run(): void
     {
         $specializations = [
-            ['name' => 'Cardiologist', 'description' => 'Specialist in heart diseases'],
-            ['name' => 'Dermatologist', 'description' => 'Specialist in skin conditions'],
-            ['name' => 'Neurologist', 'description' => 'Specialist in brain and nervous system'],
-            ['name' => 'Pediatrician', 'description' => 'Specialist in child healthcare'],
+            [
+                'name' => 'Cardiologist',
+                'fontawesome_icon' => 'heart-pulse',
+                'description' => 'Specialist in heart diseases',
+            ],
+            [
+                'name' => 'Dermatologist',
+                'fontawesome_icon' => 'skin',
+                'description' => 'Specialist in skin conditions',
+            ],
+            [
+                'name' => 'Neurologist',
+                'fontawesome_icon' => 'brain',
+                'description' => 'Specialist in brain and nervous system',
+            ],
+            [
+                'name' => 'Pediatrician',
+                'fontawesome_icon' => 'child',
+                'description' => 'Specialist in child healthcare',
+            ],
+            [
+                'name' => 'Dentist',
+                'fontawesome_icon' => 'tooth',
+                'description' => 'Specialist in dental care and oral health',
+            ],
         ];
 
         foreach ($specializations as $spec) {

@@ -79,7 +79,7 @@
     </div>
 
     <div class="mt-12 text-center">
-      <a href="{{ route('doctor.all-doctor') }}"
+      <a href="{{ route('patient.all-doctor') }}"
         class="inline-flex items-center font-semibold transition-colors text-primary hover:text-secondary">
         Lihat Semua Dokter <i class="ml-2 fas fa-arrow-right"></i>
       </a>
