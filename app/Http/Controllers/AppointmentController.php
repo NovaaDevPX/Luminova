@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
@@ -12,6 +13,10 @@ class AppointmentController extends Controller
     {
 
         $doctor = Doctor::where('id', $id)->with('specialization', 'reviews.user')->first();
+
+        if (!Auth::guard('web')->check()) {
+            return redirect()->route('login')->with('error', 'Silakan masuk terlebih dahulu untuk membuat janji temu.');
+        }
 
         // dd($doctor);
         return view('patient.booking-doctor', compact('doctor'));
