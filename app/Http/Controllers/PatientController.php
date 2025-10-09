@@ -22,6 +22,10 @@ class PatientController extends Controller
     {
         return view('patient.contact-we');
     }
+    public function thanksBooking()
+    {
+        return view('patient.thanks-booking');
+    }
 
     public function allDoctor()
     {

@@ -11,14 +11,13 @@ class AppointmentController extends Controller
 {
     public function index($id)
     {
-
         $doctor = Doctor::where('id', $id)->with('specialization', 'reviews.user')->first();
 
         if (!Auth::guard('web')->check()) {
+            session(['url.intended' => url()->current()]);
             return redirect()->route('login')->with('error', 'Silakan masuk terlebih dahulu untuk membuat janji temu.');
         }
 
-        // dd($doctor);
         return view('patient.booking-doctor', compact('doctor'));
     }
 
@@ -44,6 +43,6 @@ class AppointmentController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->back()->with('success', 'Janji temu berhasil dibuat!');
+        return redirect()->route('patient.thanks-booking')->with('success', 'Janji temu berhasil dibuat!');
     }
 }
