@@ -19,20 +19,23 @@ class AppointmentController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'doctor_id' => 'required|exists:doctors,id',
+            'user_id' => 'required|exists:users,id',
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'appointment_date' => 'required|date',
-            'message' => 'nullable|string',
+            'notes' => 'nullable|string',
         ]);
 
         Appointment::create([
             'doctor_id' => $validated['doctor_id'],
+            'user_id' => $validated['user_id'],
             'patient_name' => $validated['name'],
             'patient_email' => $validated['email'],
             'appointment_date' => $validated['appointment_date'],
-            'message' => $validated['message'] ?? null,
+            'notes' => $validated['notes'] ?? null,
             'status' => 'pending',
         ]);
 

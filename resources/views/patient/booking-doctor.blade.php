@@ -24,15 +24,36 @@
               <i class="mr-2 fas fa-stethoscope"></i>{{ $doctor->specialization->name }}
             </span>
             @if ($doctor->reviews->count() > 0)
-              <div class="flex justify-center mt-2 text-yellow-400 md:justify-start">
-                @php $averageRating = round($doctor->reviews->avg('rating')); @endphp
+              @php
+                $averageRating = round($doctor->reviews->avg('rating'), 1);
+              @endphp
+
+              <div class="flex justify-center mt-2 md:justify-start">
                 @for ($i = 1; $i <= 5; $i++)
-                  <i class="fa-solid fa-star{{ $i <= $averageRating ? '' : '-o' }}"></i>
+                  @if ($averageRating >= $i)
+                    {{-- Bintang penuh --}}
+                    <i class="text-yellow-400 fa-solid fa-star"></i>
+                  @elseif ($averageRating > $i - 1 && $averageRating < $i)
+                    @if (fmod($averageRating, 1) >= 0.5)
+                      {{-- Setengah bintang --}}
+                      <i class="text-yellow-400 fa-solid fa-star-half-stroke"></i>
+                    @else
+                      {{-- Bintang kosong --}}
+                      <i class="text-gray-300 fa-solid fa-star"></i>
+                    @endif
+                  @else
+                    {{-- Bintang kosong --}}
+                    <i class="text-gray-300 fa-solid fa-star"></i>
+                  @endif
                 @endfor
-                <span
-                  class="ml-2 text-sm text-gray-600">({{ number_format($doctor->reviews->avg('rating'), 1) }})</span>
+
+                <span class="ml-2 text-sm text-gray-600">
+                  ({{ number_format($averageRating, 1) }})
+                </span>
               </div>
             @endif
+
+
           </div>
         </div>
 
@@ -46,13 +67,6 @@
         <p class="mt-6 leading-relaxed text-gray-600">
           {{ $doctor->specialization->description ?? 'Dokter berpengalaman dan profesional di bidangnya.' }}
         </p>
-
-        <div class="mt-8 text-center md:text-left">
-          <a href="#form-appointment"
-            class="inline-flex items-center px-6 py-3 font-semibold text-white transition bg-blue-600 rounded-xl hover:bg-blue-700">
-            <i class="mr-2 fas fa-calendar-plus"></i> Buat Janji Temu
-          </a>
-        </div>
       </div>
 
       <!-- Appointment Form -->
@@ -61,12 +75,14 @@
 
         <form action="{{ route('doctor.appointment.store') }}" method="POST" class="space-y-5">
           @csrf
+          @method('POST')
           <input type="hidden" name="doctor_id" value="{{ $doctor->id }}">
+          <input type="hidden" name="user_id" value="{{ Auth::guard('web')->user()->id }}">
 
           <!-- Name -->
           <div>
             <label for="name" class="block mb-2 font-medium text-gray-700">Nama Lengkap</label>
-            <input type="text" name="name" id="name"
+            <input type="text" name="name" id="name" value="{{ Auth::guard('web')->user()->name }}" readonly
               class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
               placeholder="Masukkan nama Anda" required>
           </div>
@@ -74,7 +90,8 @@
           <!-- Email -->
           <div>
             <label for="email" class="block mb-2 font-medium text-gray-700">Email</label>
-            <input type="email" name="email" id="email"
+            <input type="email" name="email" id="email" value="{{ Auth::guard('web')->user()->email }}"
+              readonly
               class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
               placeholder="Masukkan email aktif" required>
           </div>
@@ -89,8 +106,8 @@
 
           <!-- Message -->
           <div>
-            <label for="message" class="block mb-2 font-medium text-gray-700">Keluhan / Catatan</label>
-            <textarea name="message" id="message" rows="4"
+            <label for="notes" class="block mb-2 font-medium text-gray-700">Keluhan / Catatan</label>
+            <textarea name="notes" id="notes" rows="4"
               class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
               placeholder="Tuliskan keluhan atau alasan janji temu Anda"></textarea>
           </div>
